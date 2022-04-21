@@ -13,6 +13,10 @@ end
 
 function generate_evaluate!(exprs, E, ::Type{T}, nvar, nterm, coeffs, access_input) where T
     m, n = size(E)
+    
+    if n == 0
+        return zero(eltype(E))
+    end
 
     if n == 1
         return first(monomial_product(T, E[:,1], coeffs[nterm], access_input=access_input))
